@@ -2,7 +2,6 @@ from django.shortcuts import render
 from catalog.utils import load_contacts_to_json
 
 
-# Create your views here.
 def home(request):
     return render(request, 'catalog/home.html')
 
