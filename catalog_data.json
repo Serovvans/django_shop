@@ -1,0 +1,104 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Корпоративные сервисы",
+      "description": "Сервисы для пользования внутри компании"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Мобильное приложение",
+      "description": "Приложения для Android и IOS устройств"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Почтовые сервисы",
+      "description": "Приложения для почтовых клиентов и серверов"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "ToDo-лист",
+      "description": "Список дел всегда под рукой",
+      "preview": "",
+      "category": 2,
+      "price": 50,
+      "create_data": "2023-10-22T08:42:28.173Z",
+      "update_data": "2023-10-22T08:42:28.173Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Компас",
+      "description": "Всегда покажет дорогу домой",
+      "preview": "",
+      "category": 2,
+      "price": 23,
+      "create_data": "2023-10-22T08:42:52.081Z",
+      "update_data": "2023-10-22T08:42:52.081Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Сервис учета прибыльности работников",
+      "description": "Учитывает данные по доле прибыли от каждого работника",
+      "preview": "",
+      "category": 1,
+      "price": 150,
+      "create_data": "2023-10-22T08:43:28.336Z",
+      "update_data": "2023-10-22T08:43:28.336Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "Статистика эффективности бизнеса",
+      "description": "Рассчитывает основные метрики и показывает эффективность бизнеса",
+      "preview": "",
+      "category": 1,
+      "price": 500,
+      "create_data": "2023-10-22T08:44:01.079Z",
+      "update_data": "2023-10-22T08:44:01.079Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "Антиспам",
+      "description": "Защитит вас от нежелательных сообщений",
+      "preview": "",
+      "category": 3,
+      "price": 70,
+      "create_data": "2023-10-22T08:44:33.541Z",
+      "update_data": "2023-10-22T08:44:33.541Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": "Автоответчик на регулярные сообщения",
+      "description": "Избавит Вас от рутинной работы",
+      "preview": "",
+      "category": 3,
+      "price": 85,
+      "create_data": "2023-10-22T08:44:52.028Z",
+      "update_data": "2023-10-22T08:44:52.028Z"
+    }
+  }
+]
