@@ -1,0 +1,15 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="row text-center">
+    <div class="card">
+        <div class="card-body">
+            <img class="col-5 row-5" src="{% mediapath_tag object.preview %}">
+            <h1>{{object.name}}</h1>
+            <p>{{object.description}}</p>
+            <p>{{object.category}}</p>
+            <p>{{object.price}}$</p>
+        </div>
+    </div>
+</div>
+{%endblock%}
