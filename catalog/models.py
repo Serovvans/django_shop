@@ -30,3 +30,16 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
+
+
+class Feedback(models.Model):
+    name = models.CharField(max_length=100, verbose_name='имя')
+    phone = models.CharField(max_length=12, verbose_name='телефон')
+    message = models.TextField(verbose_name='сообщение')
+
+    def __str__(self):
+        return f"{self.message}"
+
+    class Meta:
+        verbose_name = 'сообщение'
+        verbose_name_plural = 'сообщения'

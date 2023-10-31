@@ -1,28 +1,26 @@
-from django.shortcuts import render
+from django.urls import reverse_lazy
+
 from catalog.utils import load_contacts_to_json
-from catalog.models import Product
+from catalog.models import Product, Feedback
+from django.views.generic import ListView, DetailView, CreateView
 
 
-def home(request):
-    context = {
-        "object_list": Product.objects.all(),
-        "title": 'Skystore - home'
-    }
-    return render(request, 'catalog/home.html', context)
+class ProductListView(ListView):
+    model = Product
 
 
-def contacts(request):
-    if request.method == "POST":
-        name = request.POST.get("name")
-        phone = request.POST.get("phone")
-        message = request.POST.get("message")
-        load_contacts_to_json(name, phone, message)
-    return render(request, 'catalog/contacts.html')
+class FeedbackCreateView(CreateView):
+    model = Feedback
+    fields = ['name', 'phone', 'message']
+    success_url = reverse_lazy('students:list')
+
+    def form_valid(self, form):
+        if form.is_valid():
+            feedback = form.save
+            load_contacts_to_json(feedback.name, feedback.phone, feedback.message)
+
+        return super().form_valid(form)
 
 
-def item(request, pk):
-    context = {
-        'object': Product.objects.get(pk=pk),
-        'title': 'Skystore - страница товара'
-    }
-    return render(request, 'catalog/item.html', context)
+class ProductDetailView(DetailView):
+    model = Product
