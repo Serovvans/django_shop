@@ -1,0 +1,16 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="row text-center">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h1>{{object.title}} ({{object.slug}})</h1>
+                <p>{{object.text}}</p>
+                <p>{{object.create_date}}</p>
+                <p>{{object.views_count}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

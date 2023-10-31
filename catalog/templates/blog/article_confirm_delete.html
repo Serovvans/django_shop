@@ -1,0 +1,20 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="row text-start">
+    <div class="col-12">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Новая статья</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" action="" class="form-floating">
+                    {% csrf_token %}
+                    <h1>Хотите удалить статью?</h1>
+                    <button type="submit" class="btn btn-danger">Подтвердить</button>
+                    <a href="{% url 'blog:list' %}" type="button" class="btn btn-success">Отмена</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

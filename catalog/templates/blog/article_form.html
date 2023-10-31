@@ -1,0 +1,21 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="row text-start">
+    <div class="col-12">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Новая статья</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" action="" class="form-floating" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{form.as_p}}
+                    </div>
+                    <input class="btn btn-primary w-100" type="submit" value="Send"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
