@@ -1,6 +1,11 @@
 {% extends 'catalog/base.html' %}
 {% block content %}
 <div class="row text-center">
+    <a href="{% url 'catalog:product_create' %}" type="button" class="btn btn-lg btn-block btn-outline-primary">
+        Создать
+    </a>
+</div>
+<div class="row text-center">
     {% for object in object_list %}
     <div class="col-3 mb-3 mt-3">
         <div class="card mb-3 h-100 box-shadow">
@@ -11,6 +16,10 @@
                 <h1 class="card-title pricing-card-title">$ {{object.price}}</h1>
                 <p>{{object.description|truncatechars:100}}</p>
                 <a href="{% url 'catalog:product_item' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</a>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'catalog:product_edit' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-warning">Изменить</a>
+                <a href="{% url 'catalog:product_delete' object.pk%}" type="button" class="btn btn-lg btn-block btn-outline-danger">Удалить</a>
             </div>
         </div>
     </div>
