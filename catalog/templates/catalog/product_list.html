@@ -11,6 +11,10 @@
         <div class="card mb-3 h-100 box-shadow">
             <div class="card-header">
                 <h4 class="my-0 font-weight-normal">{{object.name}}</h4>
+                {% if object.active_version_number %}
+                    <p>Текущая версия {{object.active_version_number}}</p>
+                    <p>{{object.active_version_name}}</p>
+                {% endif %}
             </div>
             <div class="card-body">
                 <h1 class="card-title pricing-card-title">$ {{object.price}}</h1>
@@ -18,8 +22,9 @@
                 <a href="{% url 'catalog:product_item' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</a>
             </div>
             <div class="card-footer">
+                <a href="{% url 'catalog:version_create' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Добавить версию</a>
                 <a href="{% url 'catalog:product_edit' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-warning">Изменить</a>
-                <a href="{% url 'catalog:product_delete' object.pk%}" type="button" class="btn btn-lg btn-block btn-outline-danger">Удалить</a>
+                <a href="{% url 'catalog:product_delete' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-danger">Удалить</a>
             </div>
         </div>
     </div>
