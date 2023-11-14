@@ -4,10 +4,19 @@ from django.forms import inlineformset_factory
 from catalog.forms import ProductForm, VersionForm
 from catalog.utils import load_contacts_to_json
 from catalog.models import Product, Feedback, Version
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, View
+from django.shortcuts import redirect
 
 
-class ProductListView(ListView):
+class ProtectView(View):
+    def get(self, *args, **kwargs):
+        if self.request.user.id is None:
+            return redirect('users:login')
+        else:
+            return super().get(*args, **kwargs)
+
+
+class ProductListView(ProtectView, ListView):
     model = Product
 
     def get_context_data(self, **kwargs):
@@ -39,16 +48,16 @@ class FeedbackCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(ProtectView, DetailView):
     model = Product
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(DeleteView, ProtectView):
     model = Product
     success_url = reverse_lazy("catalog:list")
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(ProtectView, CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:list')
@@ -72,11 +81,13 @@ class ProductCreateView(CreateView):
         if formset.is_valid():
             formset.instance = self.object
             formset.save()
+            self.object.user = self.request.user
+            self.object.save()
 
         return super().form_valid(form)
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(ProtectView, UpdateView):
     model = Product
     form_class = ProductForm
 

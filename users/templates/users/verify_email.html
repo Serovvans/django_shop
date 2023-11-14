@@ -6,22 +6,19 @@
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
                     <h4 class="my-0 font-weight-normal">
-                        Вход
+                        Подтверждение почты
                     </h4>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
                         <form method="post" action="" class="form-floating" enctype="multipart/form-data">
                             {% csrf_token %}
-                            {{form.as_p}}
+                            <input type="text" name="email_code" class="form-control" id="email_code" required>
                             <button type="submit" class="btn btn-primary w-100" type="submit" value="Send">
-                            Войти
+                                Отправить код
                             </button>
                         </form>
                     </div>
-                </div>
-                <div class="card-footer">
-                    <a href="{% url 'users:generate_password' %}" class="btn btn-warning">Забыли пароль?</a>
                 </div>
             </div>
         </div>
