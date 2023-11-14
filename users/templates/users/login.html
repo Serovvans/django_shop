@@ -1,0 +1,25 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+    <div class="row center">
+        <div class="col-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        Вход
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <form method="post" action="" class="form-floating" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{form.as_p}}
+                        </form>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100" type="submit" value="Send">
+                        Войти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
