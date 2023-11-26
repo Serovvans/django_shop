@@ -4,19 +4,12 @@ from django.forms import inlineformset_factory
 from catalog.forms import ProductForm, VersionForm
 from catalog.utils import load_contacts_to_json
 from catalog.models import Product, Feedback, Version
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, View
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.shortcuts import redirect
+from django.contrib.auth.mixins import PermissionRequiredMixin, UserPassesTestMixin, LoginRequiredMixin
 
 
-class ProtectView(View):
-    def get(self, *args, **kwargs):
-        if self.request.user.id is None:
-            return redirect('users:login')
-        else:
-            return super().get(*args, **kwargs)
-
-
-class ProductListView(ProtectView, ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     model = Product
 
     def get_context_data(self, **kwargs):
@@ -35,7 +28,7 @@ class ProductListView(ProtectView, ListView):
         return context
 
 
-class FeedbackCreateView(CreateView):
+class FeedbackCreateView(LoginRequiredMixin, CreateView):
     model = Feedback
     fields = ['name', 'phone', 'message']
     success_url = reverse_lazy('catalog:list')
@@ -48,16 +41,16 @@ class FeedbackCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ProductDetailView(ProtectView, DetailView):
+class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
 
 
-class ProductDeleteView(DeleteView, ProtectView):
+class ProductDeleteView(DeleteView, LoginRequiredMixin):
     model = Product
     success_url = reverse_lazy("catalog:list")
 
 
-class ProductCreateView(ProtectView, CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:list')
@@ -87,9 +80,10 @@ class ProductCreateView(ProtectView, CreateView):
         return super().form_valid(form)
 
 
-class ProductUpdateView(ProtectView, UpdateView):
+class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
+    permission_required = ['catalog.set_is_published', 'catalog.set_description', 'catalog.set_category']
 
     def get_success_url(self):
         return reverse('catalog:product_edit', args=[self.kwargs.get('pk')])
@@ -120,7 +114,7 @@ class ProductUpdateView(ProtectView, UpdateView):
         return super().form_valid(form)
 
 
-class VersionCreateView(CreateView):
+class VersionCreateView(LoginRequiredMixin, CreateView):
     model = Version
     form_class = VersionForm
     success_url = reverse_lazy('catalog:list')

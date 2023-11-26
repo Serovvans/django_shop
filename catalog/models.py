@@ -28,12 +28,28 @@ class Product(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, **NULLABLE)
 
+    is_published = models.BooleanField(default=True, verbose_name='опубликовано')
+
     def __str__(self):
         return f"{self.name} - {self.category} - {self.price}"
 
     class Meta:
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
+        permissions = [
+            (
+                'set_is_published',
+                'Can publish post'
+            ),
+            (
+                'set_description',
+                'Can change description'
+            ),
+            (
+                'set_category',
+                'Can change category'
+            )
+        ]
 
 
 class Feedback(models.Model):

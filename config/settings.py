@@ -124,12 +124,13 @@ MEDIA_ROOT = BASE_DIR / '/media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
-LOGOUT_REDIRECT_URL = '/'
-LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = ''
+LOGIN_URL = '/users/'
 
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'serovvans@yandex.ru'
-EMAIL_HOST_PASSWORD = 'hsnmewepwmrhlwii'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_SSL = True

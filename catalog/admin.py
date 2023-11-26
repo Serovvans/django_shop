@@ -1,14 +1,25 @@
 from django.contrib import admin
-from catalog.models import Product, Category
+
+from catalog.models import *
+from users.models import User
 
 
+# Register your models here.
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'price', 'category',)
+    list_display = ('name', 'description', 'category', 'is_published')
     list_filter = ('category',)
-    search_fields = ('name', 'descriptions',)
+    list_editable = ('description', 'category', 'is_published')
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name')
+    list_display = ('id', 'name',)
+
+
+@admin.register(Version)
+class VersionAdmin(admin.ModelAdmin):
+    list_display = ('product', 'name', 'product')
+
+
+admin.site.register(User)
